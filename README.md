@@ -188,7 +188,7 @@ Cross-Attention 기준 탐색 결과 — LR이 가장 민감(3e-5: 0.9815 → 1e
 ## 저장소 구조
 
 ```
-aigen-review-detection/
+hc-roberta-cross-attention/
 ├── src/                                    # 양방향 Co-Attention 파이프라인 (패키지)
 │   ├── config.py                           #   경로 · 하이퍼파라미터 상수
 │   ├── features.py                         #   FeatureExtractor — HC 23개 추출
@@ -218,7 +218,7 @@ aigen-review-detection/
 ## 실행 방법
 
 ```bash
-git clone <this-repo> && cd aigen-review-detection
+git clone <this-repo> && cd hc-roberta-cross-attention
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
