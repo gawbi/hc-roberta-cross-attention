@@ -1,20 +1,45 @@
-# core
-numpy
-pandas>=2.0
-pyarrow
-scikit-learn
-tqdm
-matplotlib
+# HC 피처 × RoBERTa Cross-Attention — 런타임 의존성 (CPU 기준 고정)
+#
+# 설치:
+#   pip install -r requirements.txt
+#   python -m spacy download en_core_web_sm      # ★ 별도 설치 필요 (아래 참고)
+#
+# CPU 전용 torch 휠을 쓰려면(이미지/용량 절감):
+#   pip install -r requirements.txt \
+#     --index-url https://download.pytorch.org/whl/cpu \
+#     --extra-index-url https://pypi.org/simple
 
-# deep learning
-tensorflow>=2.16        # 분류기 (Keras 3)
-torch                   # RoBERTa/GPT-2 임베딩 추출, LLM 증강
-transformers>=4.40
+# ── 핵심 수치 계산 · 데이터 ─────────────────────────────────
+numpy==2.4.6
+pandas==2.3.3                 # pandas 3.x 는 주요 변경이 있고, 아래 TF/pyarrow 주의사항과도
+                              # 얽히므로 작성 당시 계열(2.x)로 고정한다.
+pyarrow==25.0.1               # parquet I/O (data_yelp.parquet)
+scikit-learn==1.9.1           # train_test_split(stratified), metrics
+tqdm==4.70.1
+matplotlib==3.11.2
 
-# hand-craft features
-textstat
-spacy                   # + python -m spacy download en_core_web_sm
-textblob
+# ── 딥러닝 ──────────────────────────────────────────────────
+# ③ 양방향 Co-Attention (제안 모델) — src/ 전체
+tensorflow==2.21.0            # Keras 3 백엔드
+keras==3.15.1                 # keras.ops (src/model.py, notebooks/04)
+# ①② 비교 모델 · RoBERTa/GPT-2 임베딩 추출 · LLM 증강
+torch==2.14.0
+transformers==4.57.6          # 4.x 계열 고정: 5.x 는 API 파괴적 변경이 있다
+sentence-transformers==5.7.0  # notebooks/06 의 ModernBERT mean-pooling 베이스라인
+tf-keras==2.21.0              # ★ 필수 — transformers 의 TF 연동 경로는 Keras 3 를 아직
+                              # 지원하지 않아, 없으면 `import sentence_transformers` 가
+                              # ValueError 로 죽는다. Keras 3(위 keras==3.15.1)는 그대로
+                              # 유지되므로 src/model.py 의 keras.ops 사용에는 영향 없다.
 
-# preprocessing
-emoji
+# ── 수작업 피처(HC 23개) 추출 ───────────────────────────────
+textstat==0.7.13              # 카운트 7개 + 가독성 6개
+textblob==0.20.1              # sentiment(polarity), subjectivity
+spacy==3.8.16                 # 품사 6개
+# ★ spaCy 모델은 PyPI 패키지가 아니라 별도 다운로드가 필요하다:
+#     python -m spacy download en_core_web_sm
+#   버전을 고정하려면 아래 형태로 직접 설치한다(spacy 3.8.x 대응 모델):
+#     pip install https://github.com/explosion/spacy-models/releases/download/\
+#       en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+
+# ── 전처리 ──────────────────────────────────────────────────
+emoji==2.16.0                 # notebooks/01 의 이모지 제거

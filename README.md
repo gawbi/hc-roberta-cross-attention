@@ -195,7 +195,8 @@ hc-roberta-cross-attention/
 │   ├── dataset.py                          #   로드 · stratified split · 스케일링 · RoBERTa 임베딩 캐시
 │   ├── model.py                            #   FeatureTokenizer · MaskedMeanPool · build_model()
 │   ├── train.py                            #   학습 + val/test 평가 진입점
-│   └── attention.py                        #   학습된 모델의 attention weight 분석
+│   ├── attention.py                        #   학습된 모델의 attention weight 분석
+│   └── seed.py                             #   random/numpy/torch/tf 시드 일괄 고정
 ├── notebooks/
 │   ├── 01_preprocessing.ipynb              #   Yelp 원본 필터링 · 정제
 │   ├── 02_augmentation.ipynb               #   LLM 재작성으로 AI 리뷰 10K 생성
@@ -205,7 +206,10 @@ hc-roberta-cross-attention/
 │   ├── 06_baseline_bert_modernbert.ipynb   #   베이스라인: BERT / ModernBERT (5K 부분집합)
 │   ├── 07_hc_roberta_simple_concat.ipynb   #   ① Simple Concat  ★본인 담당
 │   └── 08_hc_roberta_cross_attention.ipynb #   ② Cross-Attention ★본인 담당
-├── requirements.txt
+├── Makefile                                # setup / lint / verify / reproduce / clean
+├── Dockerfile                              # CPU 재현 환경 (TF + PyTorch + spaCy 모델)
+├── DATA.md                                 # Yelp 데이터 확보 및 parquet 구성 안내
+├── requirements.txt                        # 버전 고정 의존성
 ├── LICENSE                                 # MIT
 └── README.md
 ```
@@ -241,6 +245,88 @@ python -m src.attention       # 학습된 가중치 로드 → HC feature별 att
 > ⚠️ **macOS 주의** — `src/*` 진입점은 **TensorFlow를 pandas/pyarrow보다 먼저** import합니다.
 > pandas 3.x가 로드하는 pyarrow와 TF가 각자 내장한 abseil 심볼이 충돌하면, 첫 `fit()`의 `absl::Mutex`가
 > Arrow 쪽 구현에 바인딩되어 **CPU 0%인 채로 영구 데드락**에 빠집니다. import 순서를 바꾸지 마십시오.
+
+---
+
+## 재현
+
+위 "실행 방법"이 스크립트를 직접 호출하는 경로라면, 이 절은 **환경째로 고정해 한 명령으로 돌리는** 경로입니다.
+
+### 데이터 준비
+
+Yelp Open Dataset은 라이선스상 재배포할 수 없어, 원본도 파생 `data_yelp.parquet` 도 저장소에 없습니다.
+내려받는 곳, parquet 스키마, 노트북 01→02→03 으로 데이터셋을 구성하는 방법은 [DATA.md](DATA.md)에 정리했습니다.
+
+### Makefile
+
+```bash
+make help       # 타깃 목록
+make setup      # requirements.txt + spaCy en_core_web_sm + TextBlob 코퍼스
+make lint       # src/ 문법 검사
+make verify     # 데이터 없이 ③ 제안 모델 빌드·forward 확인
+make reproduce  # ③ 학습 → attention 분석 (데이터 필요)
+make clean      # 캐시·산출물 정리 (임베딩 캐시는 보존)
+```
+
+| 타깃 | 하는 일 | 데이터 필요 | 소요 시간 |
+|---|---|---|---|
+| `make verify` | `build_model()` 로 FeatureTokenizer + 양방향 Co-Attention 을 빌드하고 난수 `(text_emb, mask, hc)` 로 forward 통과 확인 | ✗ | 수십 초 |
+| `make lint` | `compileall` + `ruff`(설치 시, 문법·미정의 이름 규칙만) | ✗ | 1초 미만 |
+| `make smoke` | `python -m src.train --smoke` — 2K 서브샘플 · 2 epochs | **✓** | 수 분 |
+| `make train` | ③ 전체 학습. 첫 실행 시 RoBERTa 임베딩 캐시 자동 생성(약 20분 / 7.8GB) | **✓** | GPU 기준 수십 분 |
+| `make attention` | 학습된 가중치로 HC 피처별 attention weight 표 출력 | 가중치 필요 | 수 분 |
+| `make reproduce` | `train` → `attention` 순차 실행 | **✓** | 위 둘의 합 |
+| `make notebooks` | ①② 비교 모델(Simple Concat / Cross-Attention) 재현 방법 안내 | — | — |
+
+> **소요 시간 주의** — 위 학습 시간은 원 실험 당시 Colab(T4) 기록에 근거한 추정치입니다.
+> 본 재현 레이어를 정비하는 시점에 `data_yelp.parquet` 이 로컬에 없어
+> `make reproduce` 를 끝까지 돌려 실측하지 못했습니다.
+> 데이터 없이 검증한 것은 `make lint` 와 `make verify` 입니다.
+
+### Docker
+
+파이썬·TensorFlow·PyTorch·spaCy 모델 버전까지 한 번에 고정합니다.
+
+```bash
+make docker-build          # = docker build -t hc-roberta:cpu .
+make docker-shell          # data/models 볼륨을 붙여 셸 진입
+```
+
+이미지에는 **소스만** 들어갑니다. 데이터·임베딩 캐시·가중치는 볼륨으로 마운트합니다.
+
+```bash
+docker run --rm -it \
+  -v "$PWD/data:/app/data" \
+  -v "$PWD/models:/app/models" \
+  hc-roberta:cpu \
+  make reproduce
+```
+
+- `roberta-base` · `gpt2` 등 사전학습 가중치는 이미지에 굽지 않고 최초 실행 시 HF 허브에서 내려받습니다(`HF_HOME=/app/.cache/huggingface`). **실행 시 네트워크가 필요합니다.**
+- ③(TensorFlow)과 ①②(PyTorch)를 모두 담기 때문에 이미지가 큽니다. 한쪽만 필요하면 `requirements.txt` 의 해당 블록을 지우고 빌드하세요.
+- `tf-keras` 가 `requirements.txt` 에 들어 있습니다. `transformers` 의 TensorFlow 연동 경로가 Keras 3를 아직 지원하지 않아, 이 패키지가 없으면 `notebooks/06` 의 `import sentence_transformers` 가 `ValueError` 로 실패합니다. Keras 3 자체는 그대로 유지되므로 `src/model.py` 의 `keras.ops` 사용에는 영향이 없습니다.
+
+### 시드 고정
+
+`src/seed.py` 의 `set_seed()` 가 `random` · `numpy` · `torch`(+cuDNN deterministic) · `tensorflow` 를
+한 번에 고정하고, **실제로 고정된 항목을 dict 로 돌려줍니다.**
+기본값은 `src/config.py` 의 `SEED = 42` 입니다.
+
+```python
+import tensorflow as tf          # ← 반드시 pandas 보다 먼저 (아래 주의)
+import pandas as pd
+from src.seed import set_seed
+set_seed()        # {'random': True, 'numpy': True, 'torch': True, 'tensorflow': True}
+```
+
+> ⚠️ **`src/seed.py` 는 TensorFlow 를 직접 import 하지 않습니다.**
+> 위 "macOS 주의"의 import 순서 규칙(TF를 pandas/pyarrow보다 먼저)을 깨지 않기 위해,
+> TF가 **이미 로드되어 있을 때만** `tf.random.set_seed()` 를 겁니다.
+> TF 시드까지 걸렸는지는 반환값의 `'tensorflow'` 키로 확인하세요.
+
+기존 `src/train.py` 의 `set_seed()`(random / numpy / tf)는 **그대로 두었습니다.**
+`src/seed.py` 는 그것을 대체하지 않으며, 노트북 등 `src/train.py` 를 거치지 않는
+PyTorch 경로(①②)에서 쓰라고 추가한 것입니다.
 
 ---
 
