@@ -1,0 +1,20 @@
+# core
+numpy
+pandas>=2.0
+pyarrow
+scikit-learn
+tqdm
+matplotlib
+
+# deep learning
+tensorflow>=2.16        # 분류기 (Keras 3)
+torch                   # RoBERTa/GPT-2 임베딩 추출, LLM 증강
+transformers>=4.40
+
+# hand-craft features
+textstat
+spacy                   # + python -m spacy download en_core_web_sm
+textblob
+
+# preprocessing
+emoji

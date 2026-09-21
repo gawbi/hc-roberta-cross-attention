@@ -1,0 +1,47 @@
+# ── 데이터 (대용량 / 재현 시 직접 생성) ───────────────────────────
+data/
+*.parquet
+*.npy
+*.pt
+*.zip
+*.csv
+!requirements.txt
+
+# 임베딩 캐시 · 학습 산출물
+data/roberta_emb/
+models/
+*.weights.h5
+*.ckpt
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+profile_default/
+ipython_config.py
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+._*
+
+# ── 에디터 ────────────────────────────────────────────────────
+.idea/
+.vscode/
