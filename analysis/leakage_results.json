@@ -1,0 +1,1063 @@
+{
+  "meta": {
+    "data_file": "/Users/kimgwangbin/Downloads/BigdataProgramming/data/data_yelp.parquet",
+    "n_rows": 20000,
+    "n_hc_features": 23,
+    "hc_features": [
+      "syllable",
+      "lexicon",
+      "sentence",
+      "char",
+      "letter",
+      "polysyllab",
+      "monosyllab",
+      "smog_index",
+      "flesch_reading_ease",
+      "flesch_kincaid_grade",
+      "fog_scale",
+      "dale_chall",
+      "reading_time",
+      "sentiment",
+      "subjectivity",
+      "perplexity",
+      "burstiness",
+      "nouns",
+      "adj",
+      "verbs",
+      "pronoun",
+      "adverb",
+      "article"
+    ],
+    "label_counts": {
+      "human": 10000,
+      "ai": 10000
+    },
+    "source_counts": {
+      "human": 10000,
+      "Qwen/Qwen3-1.7B": 5000,
+      "meta-llama/Llama-3.2-1B-Instruct": 5000
+    },
+    "split": {
+      "train": 14000,
+      "val": 3000,
+      "test": 3000,
+      "seed": 42,
+      "scheme": "stratified 70/15/15 (src/dataset.py와 동일)"
+    }
+  },
+  "step1_single_feature_auc": {
+    "perplexity": {
+      "raw_auc_test": 0.8634964444444444,
+      "lr_f1_test": 0.7846625766871166,
+      "lr_auc_test": 0.8634964444444445
+    },
+    "flesch_reading_ease": {
+      "raw_auc_test": 0.8154442222222222,
+      "lr_f1_test": 0.7312564190345772,
+      "lr_auc_test": 0.8154442222222222
+    },
+    "smog_index": {
+      "raw_auc_test": 0.8101915555555558,
+      "lr_f1_test": 0.7400135409614083,
+      "lr_auc_test": 0.8101915555555558
+    },
+    "fog_scale": {
+      "raw_auc_test": 0.7899757777777777,
+      "lr_f1_test": 0.7085478887744593,
+      "lr_auc_test": 0.7899757777777777
+    },
+    "flesch_kincaid_grade": {
+      "raw_auc_test": 0.7771144444444444,
+      "lr_f1_test": 0.7052845528455285,
+      "lr_auc_test": 0.7771144444444444
+    },
+    "dale_chall": {
+      "raw_auc_test": 0.7454564444444445,
+      "lr_f1_test": 0.6748133061778683,
+      "lr_auc_test": 0.7454564444444445
+    },
+    "polysyllab": {
+      "raw_auc_test": 0.6830508888888889,
+      "lr_f1_test": 0.5879749170047953,
+      "lr_auc_test": 0.6830508888888889
+    },
+    "burstiness": {
+      "raw_auc_test": 0.6801657777777778,
+      "lr_f1_test": 0.6711697881486031,
+      "lr_auc_test": 0.6801657777777776
+    },
+    "adverb": {
+      "raw_auc_test": 0.6367895555555556,
+      "lr_f1_test": 0.6112173358827279,
+      "lr_auc_test": 0.6367895555555556
+    },
+    "article": {
+      "raw_auc_test": 0.6060222222222222,
+      "lr_f1_test": 0.5188437614343212,
+      "lr_auc_test": 0.6060222222222222
+    },
+    "sentence": {
+      "raw_auc_test": 0.5907115555555555,
+      "lr_f1_test": 0.6279491833030852,
+      "lr_auc_test": 0.5907115555555555
+    },
+    "monosyllab": {
+      "raw_auc_test": 0.5724688888888889,
+      "lr_f1_test": 0.5977500760109455,
+      "lr_auc_test": 0.5724688888888889
+    },
+    "pronoun": {
+      "raw_auc_test": 0.5651164444444445,
+      "lr_f1_test": 0.6124486200822079,
+      "lr_auc_test": 0.5651164444444444
+    },
+    "lexicon": {
+      "raw_auc_test": 0.531660888888889,
+      "lr_f1_test": 0.5736954531583766,
+      "lr_auc_test": 0.531660888888889
+    },
+    "adj": {
+      "raw_auc_test": 0.53063,
+      "lr_f1_test": 0.5357142857142857,
+      "lr_auc_test": 0.46936999999999995
+    },
+    "syllable": {
+      "raw_auc_test": 0.5144704444444445,
+      "lr_f1_test": 0.5409535452322738,
+      "lr_auc_test": 0.48552955555555555
+    },
+    "verbs": {
+      "raw_auc_test": 0.5119275555555556,
+      "lr_f1_test": 0.5497659906396256,
+      "lr_auc_test": 0.5119275555555556
+    },
+    "letter": {
+      "raw_auc_test": 0.5113875555555555,
+      "lr_f1_test": 0.5410539215686274,
+      "lr_auc_test": 0.4886124444444444
+    },
+    "char": {
+      "raw_auc_test": 0.5108477777777778,
+      "lr_f1_test": 0.5438435685915063,
+      "lr_auc_test": 0.4891522222222222
+    },
+    "reading_time": {
+      "raw_auc_test": 0.5108477777777778,
+      "lr_f1_test": 0.5438435685915063,
+      "lr_auc_test": 0.4891522222222222
+    },
+    "subjectivity": {
+      "raw_auc_test": 0.5031695555555555,
+      "lr_f1_test": 0.503592423252776,
+      "lr_auc_test": 0.4968151111111112
+    },
+    "nouns": {
+      "raw_auc_test": 0.5003659999999999,
+      "lr_f1_test": 0.5494106980961015,
+      "lr_auc_test": 0.499634
+    },
+    "sentiment": {
+      "raw_auc_test": 0.5000797777777778,
+      "lr_f1_test": 0.5168539325842697,
+      "lr_auc_test": 0.4999308888888889
+    }
+  },
+  "step2_trivial_baselines": {
+    "char_len_only": {
+      "f1": 0.5509018648731275,
+      "auc": 0.49683533333333335,
+      "accuracy": 0.5103333333333333,
+      "gb_f1": 0.654682516671499,
+      "gb_auc": 0.6276184444444444,
+      "n_features": 1
+    },
+    "word_count_only": {
+      "f1": 0.5769113615595491,
+      "auc": 0.5321348888888888,
+      "accuracy": 0.537,
+      "gb_f1": 0.6446907817969662,
+      "gb_auc": 0.6151773333333334,
+      "n_features": 1
+    },
+    "punct_ratio_only": {
+      "f1": 0.5555907507127019,
+      "auc": 0.5248033333333334,
+      "accuracy": 0.5323333333333333,
+      "gb_f1": 0.6659310344827586,
+      "gb_auc": 0.6313666666666666,
+      "n_features": 1
+    },
+    "type_token_ratio_only": {
+      "f1": 0.5469061876247505,
+      "auc": 0.5629117777777778,
+      "accuracy": 0.546,
+      "gb_f1": 0.6689734717416378,
+      "gb_auc": 0.6421624444444444,
+      "n_features": 1
+    },
+    "len_word_punct(3)": {
+      "f1": 0.7464273845131273,
+      "auc": 0.8295648888888888,
+      "accuracy": 0.7456666666666667,
+      "gb_f1": 0.7783676177836761,
+      "gb_auc": 0.8630722222222221,
+      "n_features": 3
+    },
+    "all_trivial(11)": {
+      "f1": 0.8619439868204284,
+      "auc": 0.9301844444444444,
+      "accuracy": 0.8603333333333333,
+      "gb_f1": 0.8867485885088011,
+      "gb_auc": 0.9513382222222222,
+      "n_features": 11
+    },
+    "_single_raw_auc": {
+      "avg_word_len": 0.8121864444444444,
+      "comma_ratio": 0.791375111111111,
+      "upper_ratio": 0.7568373333333334,
+      "excl_count": 0.6698884444444444,
+      "digit_ratio": 0.6269353333333333,
+      "type_token_ratio": 0.5629117777777778,
+      "period_ratio": 0.5538533333333333,
+      "word_count": 0.5321348888888888,
+      "punct_ratio": 0.5248033333333333,
+      "newline_count": 0.5206666666666666,
+      "char_len": 0.5031646666666666
+    }
+  },
+  "step3_hc_full_and_importance": {
+    "logreg": {
+      "f1": 0.9056478405315614,
+      "auc": 0.9632337777777777,
+      "accuracy": 0.9053333333333333
+    },
+    "mlp": {
+      "f1": 0.9114179858538228,
+      "auc": 0.9735324444444444,
+      "accuracy": 0.9123333333333333
+    },
+    "hist_gb": {
+      "f1": 0.9072026800670017,
+      "auc": 0.9704555555555556,
+      "accuracy": 0.9076666666666666
+    },
+    "permutation_importance_gb_auc": {
+      "perplexity": {
+        "mean": 0.2108758222222223,
+        "std": 0.006427733110226038
+      },
+      "monosyllab": {
+        "mean": 0.04872253333333343,
+        "std": 0.0016454845245378682
+      },
+      "article": {
+        "mean": 0.04354355555555565,
+        "std": 0.001945892925885792
+      },
+      "flesch_reading_ease": {
+        "mean": 0.038332622222222265,
+        "std": 0.001667856241547623
+      },
+      "adverb": {
+        "mean": 0.012728800000000073,
+        "std": 0.0010158065879868703
+      },
+      "dale_chall": {
+        "mean": 0.012402933333333432,
+        "std": 0.0004076800585305509
+      },
+      "burstiness": {
+        "mean": 0.012277511111111195,
+        "std": 0.0008785365429416909
+      },
+      "verbs": {
+        "mean": 0.011439644444444553,
+        "std": 0.0006391778299281021
+      },
+      "flesch_kincaid_grade": {
+        "mean": 0.011218888888888945,
+        "std": 0.0013633436348429143
+      },
+      "lexicon": {
+        "mean": 0.009576133333333414,
+        "std": 0.0008940921498065495
+      },
+      "sentence": {
+        "mean": 0.002279377777777869,
+        "std": 0.00027770261738724404
+      },
+      "nouns": {
+        "mean": 0.0014002666666667273,
+        "std": 0.00026677525196637595
+      },
+      "fog_scale": {
+        "mean": 0.0010359555555556233,
+        "std": 0.0002895962928621292
+      },
+      "pronoun": {
+        "mean": 0.0008736000000000854,
+        "std": 0.00012636661537555028
+      },
+      "sentiment": {
+        "mean": 0.000702844444444517,
+        "std": 0.00027549147642035406
+      },
+      "adj": {
+        "mean": 0.0006868444444445343,
+        "std": 0.00016824652106906798
+      },
+      "polysyllab": {
+        "mean": 0.0006759111111112159,
+        "std": 0.00021283950250633614
+      },
+      "subjectivity": {
+        "mean": 0.0004947111111111568,
+        "std": 0.0003683151334534714
+      },
+      "smog_index": {
+        "mean": 0.0004400888888889343,
+        "std": 0.00014370694459883056
+      },
+      "char": {
+        "mean": 0.0003332000000001112,
+        "std": 0.00014030725366887578
+      },
+      "syllable": {
+        "mean": 0.00020253333333341005,
+        "std": 0.0001246761414502053
+      },
+      "letter": {
+        "mean": 0.00011417777777786853,
+        "std": 9.881319450059796e-05
+      },
+      "reading_time": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "group_ablation_logreg": {
+      "only_count(7)": {
+        "f1": 0.7588772404463984,
+        "auc": 0.8481164444444446,
+        "accuracy": 0.7623333333333333
+      },
+      "without_count(7)": {
+        "f1": 0.8851261620185923,
+        "auc": 0.9522004444444445,
+        "accuracy": 0.8846666666666667
+      },
+      "only_readability(6)": {
+        "f1": 0.7440578711677575,
+        "auc": 0.8356533333333332,
+        "accuracy": 0.7523333333333333
+      },
+      "without_readability(6)": {
+        "f1": 0.9013245033112582,
+        "auc": 0.960760888888889,
+        "accuracy": 0.9006666666666666
+      },
+      "only_sentiment(2)": {
+        "f1": 0.5322376738305942,
+        "auc": 0.4946893333333333,
+        "accuracy": 0.5066666666666667
+      },
+      "without_sentiment(2)": {
+        "f1": 0.9009308510638298,
+        "auc": 0.9623084444444444,
+        "accuracy": 0.9006666666666666
+      },
+      "only_lm(2)": {
+        "f1": 0.7929246721561451,
+        "auc": 0.8683822222222224,
+        "accuracy": 0.7736666666666666
+      },
+      "without_lm(2)": {
+        "f1": 0.8532171581769437,
+        "auc": 0.9303257777777778,
+        "accuracy": 0.854
+      },
+      "only_pos(6)": {
+        "f1": 0.719130721106355,
+        "auc": 0.7884404444444444,
+        "accuracy": 0.7156666666666667
+      },
+      "without_pos(6)": {
+        "f1": 0.86843853820598,
+        "auc": 0.9403746666666668,
+        "accuracy": 0.868
+      }
+    }
+  },
+  "step4_distribution_shift": {
+    "perplexity": {
+      "ks_stat": 0.56,
+      "ks_pvalue": 0.0,
+      "cohens_d": -0.29542680188378834,
+      "human_mean": 201.10779785973207,
+      "ai_mean": 60.91790809693993,
+      "human_std": 668.855149467752,
+      "ai_std": 54.329368507834246
+    },
+    "trivial:comma_ratio": {
+      "ks_stat": 0.4952,
+      "ks_pvalue": 0.0,
+      "cohens_d": 1.1202180946636884,
+      "human_mean": 0.03158561868901402,
+      "ai_mean": 0.06089540758373928,
+      "human_std": 0.028862933101615425,
+      "ai_std": 0.02315041229049411
+    },
+    "flesch_reading_ease": {
+      "ks_stat": 0.4949,
+      "ks_pvalue": 0.0,
+      "cohens_d": -1.2073291077416977,
+      "human_mean": 75.41022447862395,
+      "ai_mean": 62.15292836455819,
+      "human_std": 10.47729019843461,
+      "ai_std": 11.460933518371187
+    },
+    "trivial:avg_word_len": {
+      "ks_stat": 0.4941,
+      "ks_pvalue": 0.0,
+      "cohens_d": 1.1965296751083876,
+      "human_mean": 4.434593330142143,
+      "ai_mean": 4.864101150843498,
+      "human_std": 0.3496980189608404,
+      "ai_std": 0.3679564136325517
+    },
+    "smog_index": {
+      "ks_stat": 0.4864,
+      "ks_pvalue": 0.0,
+      "cohens_d": 1.17544686610954,
+      "human_mean": 8.774515910362487,
+      "ai_mean": 10.896160440416212,
+      "human_std": 1.8758257719207645,
+      "ai_std": 1.731025256240256
+    },
+    "fog_scale": {
+      "ks_stat": 0.4565,
+      "ks_pvalue": 0.0,
+      "cohens_d": 1.0000521310467383,
+      "human_mean": 8.121058491688792,
+      "ai_mean": 10.67522972790598,
+      "human_std": 2.72030150700525,
+      "ai_std": 2.375894828254227
+    },
+    "flesch_kincaid_grade": {
+      "ks_stat": 0.4424,
+      "ks_pvalue": 0.0,
+      "cohens_d": 0.8953023834545433,
+      "human_mean": 6.098077316320227,
+      "ai_mean": 8.108246979827555,
+      "human_std": 2.527058761516693,
+      "ai_std": 1.9222852389021883
+    },
+    "trivial:upper_ratio": {
+      "ks_stat": 0.3922,
+      "ks_pvalue": 0.0,
+      "cohens_d": -0.7364962741583827,
+      "human_mean": 0.033724115447813584,
+      "ai_mean": 0.022390602737322775,
+      "human_std": 0.020177638128575544,
+      "ai_std": 0.00814999335532032
+    },
+    "dale_chall": {
+      "ks_stat": 0.3886,
+      "ks_pvalue": 0.0,
+      "cohens_d": 0.9019304549571331,
+      "human_mean": 7.92766934935101,
+      "ai_mean": 8.921145421833865,
+      "human_std": 1.1166446291712333,
+      "ai_std": 1.086031781663996
+    },
+    "trivial:excl_count": {
+      "ks_stat": 0.3307,
+      "ks_pvalue": 1e-323,
+      "cohens_d": -0.6528686069422773,
+      "human_mean": 0.9048,
+      "ai_mean": 0.0478,
+      "human_std": 1.8405806040486248,
+      "ai_std": 0.24107086095171268
+    },
+    "polysyllab": {
+      "ks_stat": 0.2956,
+      "ks_pvalue": 1e-323,
+      "cohens_d": 0.543046082178662,
+      "human_mean": 7.6278,
+      "ai_mean": 10.7222,
+      "human_std": 5.845208906446373,
+      "ai_std": 5.546767271122884
+    },
+    "burstiness": {
+      "ks_stat": 0.2816,
+      "ks_pvalue": 1e-323,
+      "cohens_d": -0.5999329450594361,
+      "human_mean": 0.7862061453125918,
+      "ai_mean": 0.5522836735845061,
+      "human_std": 0.45517602455542305,
+      "ai_std": 0.31120861165459957
+    },
+    "trivial:digit_ratio": {
+      "ks_stat": 0.2369,
+      "ks_pvalue": 1.7699527967594425e-246,
+      "cohens_d": -0.4037324061784414,
+      "human_mean": 0.002952982199917272,
+      "ai_mean": 0.0011266025578076295,
+      "human_std": 0.005494214608258337,
+      "ai_std": 0.0032768772680874542
+    },
+    "adverb": {
+      "ks_stat": 0.2279,
+      "ks_pvalue": 5.657748269038265e-228,
+      "cohens_d": -0.5895808878702519,
+      "human_mean": 7.3873,
+      "ai_mean": 4.7825,
+      "human_std": 5.5157863183774625,
+      "ai_std": 2.9343813232093745
+    },
+    "article": {
+      "ks_stat": 0.2156,
+      "ks_pvalue": 6.964726128273455e-204,
+      "cohens_d": 0.21172558700220698,
+      "human_mean": 7.8765,
+      "ai_mean": 8.9948,
+      "human_std": 5.977679127387151,
+      "ai_std": 4.47854585328765
+    },
+    "sentence": {
+      "ks_stat": 0.1912,
+      "ks_pvalue": 3.6340502190136153e-160,
+      "cohens_d": -0.4551156791243998,
+      "human_mean": 7.3687,
+      "ai_mean": 5.7336,
+      "human_std": 4.433707287361221,
+      "ai_std": 2.480893193992841
+    },
+    "monosyllab": {
+      "ks_stat": 0.1891,
+      "ks_pvalue": 1.1785602233953768e-156,
+      "cohens_d": -0.4540399165593609,
+      "human_mean": 69.4289,
+      "ai_mean": 52.6464,
+      "human_std": 46.086266335970414,
+      "ai_std": 24.66276073435413
+    },
+    "trivial:period_ratio": {
+      "ks_stat": 0.1857,
+      "ks_pvalue": 4.694165883909373e-151,
+      "cohens_d": -0.2822062889099699,
+      "human_mean": 0.08423764716797914,
+      "ai_mean": 0.0738202594483849,
+      "human_std": 0.0483354712404343,
+      "ai_std": 0.019715715624107198
+    },
+    "trivial:type_token_ratio": {
+      "ks_stat": 0.1774,
+      "ks_pvalue": 8.056344659839958e-138,
+      "cohens_d": 0.2203942789185637,
+      "human_mean": 0.75751006842476,
+      "ai_mean": 0.7769230664985959,
+      "human_std": 0.10357252150341312,
+      "ai_std": 0.0691984459165709
+    },
+    "pronoun": {
+      "ks_stat": 0.1652,
+      "ks_pvalue": 1.7317296593216406e-119,
+      "cohens_d": -0.3980871579020241,
+      "human_mean": 10.6341,
+      "ai_mean": 7.8072,
+      "human_std": 8.69459701136286,
+      "ai_std": 5.024761502797919
+    },
+    "trivial:word_count": {
+      "ks_stat": 0.1483,
+      "ks_pvalue": 2.746186027085804e-96,
+      "cohens_d": -0.3173355733750305,
+      "human_mean": 97.0592,
+      "ai_mean": 80.6448,
+      "human_std": 63.47986054931123,
+      "ai_std": 36.34370967526568
+    },
+    "lexicon": {
+      "ks_stat": 0.1473,
+      "ks_pvalue": 5.394005070205913e-95,
+      "cohens_d": -0.3148873414334426,
+      "human_mean": 96.6417,
+      "ai_mean": 80.406,
+      "human_std": 63.249709257118326,
+      "ai_std": 36.27507359055251
+    },
+    "syllable": {
+      "ks_stat": 0.1189,
+      "ks_pvalue": 5.7744472332320445e-62,
+      "cohens_d": -0.1469254856391162,
+      "human_mean": 133.8801,
+      "ai_mean": 123.1617,
+      "human_std": 87.4904081827831,
+      "ai_std": 54.66386514974952
+    },
+    "letter": {
+      "ks_stat": 0.1173,
+      "ks_pvalue": 2.572814252127888e-60,
+      "cohens_d": -0.15704999722116555,
+      "human_mean": 410.6101,
+      "ai_mean": 375.7147,
+      "human_std": 266.478995566236,
+      "ai_std": 166.48865638207906
+    },
+    "char": {
+      "ks_stat": 0.116,
+      "ks_pvalue": 5.414236198682219e-59,
+      "cohens_d": -0.1588977723818848,
+      "human_mean": 426.7318,
+      "ai_mean": 390.0909,
+      "human_std": 276.5728812967027,
+      "ai_std": 172.7545931001257
+    },
+    "reading_time": {
+      "ks_stat": 0.116,
+      "ks_pvalue": 5.414236198682219e-59,
+      "cohens_d": -0.15889777238188454,
+      "human_mean": 6.268690142,
+      "ai_mean": 5.730435321,
+      "human_std": 4.062855626248562,
+      "ai_std": 2.5377649726408467
+    },
+    "trivial:punct_ratio": {
+      "ks_stat": 0.1155,
+      "ks_pvalue": 1.731692869890927e-58,
+      "cohens_d": -0.16390799937452163,
+      "human_mean": 0.031509585609107625,
+      "ai_mean": 0.029887251240728212,
+      "human_std": 0.012144577005612152,
+      "ai_std": 0.006958731195354689
+    },
+    "trivial:char_len": {
+      "ks_stat": 0.113,
+      "ks_pvalue": 5.371969735004469e-56,
+      "cohens_d": -0.18792850635953492,
+      "human_mean": 522.7911,
+      "ai_mean": 469.798,
+      "human_std": 339.7507351880052,
+      "ai_std": 208.77043898981483
+    },
+    "nouns": {
+      "ks_stat": 0.099,
+      "ks_pvalue": 4.6576004150930996e-43,
+      "cohens_d": -0.17218278824357097,
+      "human_mean": 19.0437,
+      "ai_mean": 17.2111,
+      "human_std": 12.574919097552874,
+      "ai_std": 8.271042061916987
+    },
+    "verbs": {
+      "ks_stat": 0.0989,
+      "ks_pvalue": 5.680504778811804e-43,
+      "cohens_d": -0.20417536798874472,
+      "human_mean": 10.6233,
+      "ai_mean": 9.1815,
+      "human_std": 8.308814422647794,
+      "ai_std": 5.5394365913872505
+    },
+    "adj": {
+      "ks_stat": 0.0945,
+      "ks_pvalue": 2.8937642365321192e-39,
+      "cohens_d": -0.02190754448549954,
+      "human_mean": 9.3328,
+      "ai_mean": 9.2149,
+      "human_std": 6.108145721902843,
+      "ai_std": 4.539858807275839
+    },
+    "trivial:newline_count": {
+      "ks_stat": 0.0396,
+      "ks_pvalue": 3.084305112309125e-07,
+      "cohens_d": 0.24435298160020688,
+      "human_mean": 0.0,
+      "ai_mean": 0.0983,
+      "human_std": 0.0,
+      "ai_std": 0.5688911231509945
+    },
+    "sentiment": {
+      "ks_stat": 0.0205,
+      "ks_pvalue": 0.02991364969994266,
+      "cohens_d": 0.019617501843107708,
+      "human_mean": 0.16818947429234696,
+      "ai_mean": 0.17262093301824272,
+      "human_std": 0.23735800585795788,
+      "ai_std": 0.2137904958802498
+    },
+    "subjectivity": {
+      "ks_stat": 0.0103,
+      "ks_pvalue": 0.6637453476707832,
+      "cohens_d": -0.000846810221955543,
+      "human_mean": 0.5588381897484591,
+      "ai_mean": 0.5587345668061443,
+      "human_std": 0.12524690560834456,
+      "ai_std": 0.1194083071035372
+    }
+  },
+  "step5_text_ngram": {
+    "tfidf_word12_logreg": {
+      "f1": 0.9744451916610626,
+      "auc": 0.9964319999999999,
+      "accuracy": 0.9746666666666667,
+      "n_features": 65495
+    },
+    "ai_skewed_ngrams": [
+      {
+        "ngram": "experience",
+        "df_human": 0.0942,
+        "df_ai": 0.4704,
+        "ratio": 4.99
+      },
+      {
+        "ngram": "overall",
+        "df_human": 0.0545,
+        "df_ai": 0.3444,
+        "ratio": 6.31
+      },
+      {
+        "ngram": "the service",
+        "df_human": 0.1047,
+        "df_ai": 0.3117,
+        "ratio": 2.98
+      },
+      {
+        "ngram": "atmosphere",
+        "df_human": 0.0613,
+        "df_ai": 0.2452,
+        "ratio": 4.0
+      },
+      {
+        "ngram": "the staff",
+        "df_human": 0.0539,
+        "df_ai": 0.2342,
+        "ratio": 4.34
+      },
+      {
+        "ngram": "meal",
+        "df_human": 0.0867,
+        "df_ai": 0.2626,
+        "ratio": 3.03
+      },
+      {
+        "ngram": "while",
+        "df_human": 0.0846,
+        "df_ai": 0.2537,
+        "ratio": 3.0
+      },
+      {
+        "ngram": "staff",
+        "df_human": 0.1154,
+        "df_ai": 0.2823,
+        "ratio": 2.45
+      },
+      {
+        "ngram": "the service was",
+        "df_human": 0.0457,
+        "df_ai": 0.2115,
+        "ratio": 4.62
+      },
+      {
+        "ngram": "the food",
+        "df_human": 0.2534,
+        "df_ai": 0.4094,
+        "ratio": 1.62
+      },
+      {
+        "ngram": "this",
+        "df_human": 0.4812,
+        "df_ai": 0.6362,
+        "ratio": 1.32
+      },
+      {
+        "ngram": "which",
+        "df_human": 0.1902,
+        "df_ai": 0.3426,
+        "ratio": 1.8
+      },
+      {
+        "ngram": "the atmosphere",
+        "df_human": 0.0245,
+        "df_ai": 0.1714,
+        "ratio": 6.97
+      },
+      {
+        "ngram": "spot",
+        "df_human": 0.0536,
+        "df_ai": 0.1991,
+        "ratio": 3.71
+      },
+      {
+        "ngram": "and the",
+        "df_human": 0.2665,
+        "df_ai": 0.411,
+        "ratio": 1.54
+      },
+      {
+        "ngram": "friendly",
+        "df_human": 0.1166,
+        "df_ai": 0.2577,
+        "ratio": 2.21
+      },
+      {
+        "ngram": "with",
+        "df_human": 0.4631,
+        "df_ai": 0.6019,
+        "ratio": 1.3
+      },
+      {
+        "ngram": "service was",
+        "df_human": 0.0942,
+        "df_ai": 0.222,
+        "ratio": 2.36
+      },
+      {
+        "ngram": "pleasant",
+        "df_human": 0.019,
+        "df_ai": 0.1436,
+        "ratio": 7.52
+      },
+      {
+        "ngram": "the experience",
+        "df_human": 0.0105,
+        "df_ai": 0.1232,
+        "ratio": 11.63
+      }
+    ],
+    "human_skewed_ngrams": [
+      {
+        "ngram": "so",
+        "df_human": 0.3363,
+        "df_ai": 0.0972,
+        "ratio": 0.29
+      },
+      {
+        "ngram": "not",
+        "df_human": 0.4463,
+        "df_ai": 0.2072,
+        "ratio": 0.46
+      },
+      {
+        "ngram": "very",
+        "df_human": 0.2831,
+        "df_ai": 0.049,
+        "ratio": 0.17
+      },
+      {
+        "ngram": "have",
+        "df_human": 0.367,
+        "df_ai": 0.1408,
+        "ratio": 0.38
+      },
+      {
+        "ngram": "good",
+        "df_human": 0.4001,
+        "df_ai": 0.1751,
+        "ratio": 0.44
+      },
+      {
+        "ngram": "you",
+        "df_human": 0.3385,
+        "df_ai": 0.1276,
+        "ratio": 0.38
+      },
+      {
+        "ngram": "will",
+        "df_human": 0.196,
+        "df_ai": 0.0104,
+        "ratio": 0.05
+      },
+      {
+        "ngram": "in",
+        "df_human": 0.5545,
+        "df_ai": 0.3714,
+        "ratio": 0.67
+      },
+      {
+        "ngram": "they",
+        "df_human": 0.4368,
+        "df_ai": 0.2627,
+        "ratio": 0.6
+      },
+      {
+        "ngram": "all",
+        "df_human": 0.2342,
+        "df_ai": 0.0611,
+        "ratio": 0.26
+      },
+      {
+        "ngram": "is",
+        "df_human": 0.5767,
+        "df_ai": 0.4053,
+        "ratio": 0.7
+      },
+      {
+        "ngram": "go",
+        "df_human": 0.2182,
+        "df_ai": 0.0565,
+        "ratio": 0.26
+      },
+      {
+        "ngram": "here",
+        "df_human": 0.2936,
+        "df_ai": 0.1377,
+        "ratio": 0.47
+      },
+      {
+        "ngram": "back",
+        "df_human": 0.2357,
+        "df_ai": 0.0925,
+        "ratio": 0.39
+      },
+      {
+        "ngram": "as",
+        "df_human": 0.2545,
+        "df_ai": 0.1131,
+        "ratio": 0.44
+      },
+      {
+        "ngram": "get",
+        "df_human": 0.2201,
+        "df_ai": 0.0795,
+        "ratio": 0.36
+      },
+      {
+        "ngram": "on",
+        "df_human": 0.4303,
+        "df_ai": 0.2926,
+        "ratio": 0.68
+      },
+      {
+        "ngram": "there",
+        "df_human": 0.2872,
+        "df_ai": 0.1545,
+        "ratio": 0.54
+      },
+      {
+        "ngram": "we",
+        "df_human": 0.3607,
+        "df_ai": 0.2454,
+        "ratio": 0.68
+      },
+      {
+        "ngram": "because",
+        "df_human": 0.1534,
+        "df_ai": 0.0414,
+        "ratio": 0.27
+      }
+    ],
+    "near_exclusive_ngrams": {
+      "ai_only(df>1% & human<0.05%)": 116,
+      "human_only(df>1% & ai<0.05%)": 39,
+      "vocab_size": 20003
+    },
+    "top_opening_5grams": {
+      "ai": {
+        "i was really looking forward": 293,
+        "i stumbled upon this hidden": 159,
+        "i stumbled upon this gem": 84,
+        "i had high hopes for": 74,
+        "i'm extremely disappointed with my": 73,
+        "i recently visited this restaurant": 71,
+        "i recently dined at this": 68,
+        "i was really disappointed with": 63,
+        "i stopped by this place": 58,
+        "i recently stopped by this": 52
+      },
+      "human": {
+        "this place used to be": 10,
+        "this is one of my": 9,
+        "this was my first time": 9,
+        "i was excited to try": 7,
+        "my boyfriend and i went": 7,
+        "my husband and i went": 7,
+        "if you are looking for": 7,
+        "i was so excited to": 6,
+        "i've been here a few": 6,
+        "we were a party of": 6
+      }
+    },
+    "opening_5gram_concentration": {
+      "ai_top10_share": 0.0995,
+      "human_top10_share": 0.0074,
+      "ai_unique_openings": 5938,
+      "human_unique_openings": 9575
+    }
+  },
+  "step6_length_matched": {
+    "n_matched": 15644,
+    "balance": {
+      "human": 7822,
+      "ai": 7822
+    },
+    "char_len_auc_after_matching": 0.5099792898420015,
+    "trivial_all_lr": {
+      "f1": 0.8531049250535332,
+      "auc": 0.9271608058081391,
+      "accuracy": 0.853855986365573
+    },
+    "hc_all_lr": {
+      "f1": 0.900296987696224,
+      "auc": 0.958520864830637,
+      "accuracy": 0.8998721772475501
+    },
+    "hc_all_gb": {
+      "f1": 0.8928110202324581,
+      "auc": 0.9613478159206799
+    },
+    "hc_without_length_features_lr(full_data)": {
+      "f1": 0.8848323929638234,
+      "auc": 0.951083111111111,
+      "accuracy": 0.8843333333333333
+    },
+    "_note": "length-matched: char_len 5%ile 구간 20개 안에서 human/ai 수를 동일하게 맞춘 뒤 동일 방식으로 70/15/15 split"
+  },
+  "step7_cross_generator": {
+    "train=Qwen3-1.7B -> test=Llama-3.2-1B-Instruct": {
+      "hc_lr": {
+        "f1": 0.9105119187182493,
+        "auc": 0.9688867200000001,
+        "accuracy": 0.9084
+      },
+      "tfidf_lr": {
+        "f1": 0.9352124526714346,
+        "auc": 0.9922357599999999
+      },
+      "n_train": 10000,
+      "n_test": 10000
+    },
+    "train=Llama-3.2-1B-Instruct -> test=Qwen3-1.7B": {
+      "hc_lr": {
+        "f1": 0.833153231035228,
+        "auc": 0.92743092,
+        "accuracy": 0.8456
+      },
+      "tfidf_lr": {
+        "f1": 0.7228302367014507,
+        "auc": 0.96787564
+      },
+      "n_train": 10000,
+      "n_test": 10000
+    },
+    "in-generator Qwen3-1.7B": {
+      "hc_lr": {
+        "f1": 0.8820039551746869,
+        "auc": 0.9497955555555555,
+        "accuracy": 0.8806666666666667
+      }
+    },
+    "in-generator Llama-3.2-1B-Instruct": {
+      "hc_lr": {
+        "f1": 0.9401709401709402,
+        "auc": 0.9856106666666666,
+        "accuracy": 0.9393333333333334
+      }
+    }
+  },
+  "plots": [
+    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_distribution_top6.png",
+    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_single_feature_auc.png",
+    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_length_distribution.png"
+  ]
+}
