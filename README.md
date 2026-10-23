@@ -109,6 +109,8 @@ HC 23개 ──▶ log(1+|x|)·sign(x) ──▶ [B, 23] ──▶ Linear(d) ─
 ## 핵심 결과
 
 **공통 조건** — Yelp 20,000건(Human 10K / AI 10K), stratified 70/15/15 split(seed=42) → held-out **Test 3,000건** 기준.
+
+> **단, 학습 조건은 같지 않다.** ③ 양방향 Co-Attention은 `MAX_EPOCHS=15` + EarlyStopping · 단일 시드 · 256토큰 전체 hidden 입력이고, ①②는 30에폭 · 5-run · CLS 벡터 입력이다 (`notebooks/04` vs `07`, `08`). 세 모델의 수치를 같은 축에서 비교할 때 이 차이를 감안해야 한다.
 전체 표·근거 파일·하이퍼파라미터 탐색은 [docs/실험결과_상세.md](docs/실험결과_상세.md)에 있습니다.
 
 | 모델 | 입력 | Accuracy | Precision | Recall | **F1** | AUROC | 실행 |
@@ -163,7 +165,7 @@ make verify        # 데이터 없이 제안 모델 빌드·forward 통과 확�
 | 팀 공동 (타 팀원 주도) | HC only MLP · BERT / ModernBERT 베이스라인 | `notebooks/05`, `notebooks/06` |
 
 > 팀 공동 산출물은 전체 파이프라인의 재현성과 비교 맥락을 위해 포함했습니다.
-> 원본 팀 저장소: `striker13j/BigdataProgramming` (팀 대표 계정). 본 저장소는 그 포크가 아니라, 개인 기여분을 중심으로 재구성한 정리본입니다.
+> 원본 팀 저장소: 팀 공용 저장소(별도 계정) (팀 대표 계정). 본 저장소는 그 포크가 아니라, 개인 기여분을 중심으로 재구성한 정리본입니다.
 
 ---
 

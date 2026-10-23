@@ -1,6 +1,6 @@
 {
   "meta": {
-    "data_file": "/Users/kimgwangbin/Downloads/BigdataProgramming/data/data_yelp.parquet",
+    "data_file": "data/data_yelp.parquet",
     "n_rows": 20000,
     "n_hc_features": 23,
     "hc_features": [
@@ -1056,8 +1056,8 @@
     }
   },
   "plots": [
-    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_distribution_top6.png",
-    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_single_feature_auc.png",
-    "/Users/kimgwangbin/github-repos/hc-roberta-cross-attention/docs/images/audit_length_distribution.png"
+    "docs/images/audit_distribution_top6.png",
+    "docs/images/audit_single_feature_auc.png",
+    "docs/images/audit_length_distribution.png"
   ]
 }
